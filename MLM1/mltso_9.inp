@@ -1,0 +1,74 @@
+  TITLE: ML-TSO TIME9
+  DATA: FILE = "long9.csv";
+  VARIABLE:
+  NAMES = Sub time anger disgust fear sad;
+  USEVAR = anger disgust fear sad ;
+  CLUSTER = sub;
+  missing are all (999);
+  ANALYSIS:
+  TYPE = TWOLEVEL;
+  ESTIMATOR = BAYES;
+              proc=2;
+              BITERATIONS = (5000);
+              bseed=450;
+              thin=10;
+
+MODEL:
+
+%WITHIN%
+
+! Latent state residual
+eta BY anger@1
+disgust (las21)
+fear (las31)
+sad   (&1 las41);
+
+! Autoregressive effect on the latent state residual
+eta ON eta&1(beta1) ;
+
+! Latent errors and latent state variances
+anger(err11) ;
+disgust(err21) ;
+fear(err31) ;
+sad(err41) ;
+eta(oc_var) ;
+
+%BETWEEN%
+
+! Latent trait-indicator variables
+theta1 BY anger@1 ;
+theta2 BY disgust@1 ;
+theta3 BY fear@1 ;
+theta4 BY sad@1 ;
+
+! Intercepts
+[anger*] ;
+[disgust*] ;
+[fear*] ;
+[sad*] ;
+
+! Fixing means of latent trait-indicator variables at 0
+[theta1@0] ;
+[theta2@0] ;
+[theta3@0] ;
+[theta4@0] ;
+
+! Fixing level-2 variances at 0 and latent trait-indicator variances
+anger@0.001;
+disgust@0.001;
+fear@0.001;
+sad@0.001;
+theta1(t_var1) ;
+theta2(t_var2) ;
+theta3(t_var3) ;
+theta4(t_var4) ;
+
+
+
+
+
+
+OUTPUT:
+          TECH1 ;TECH8;
+
+          PLOT: TYPE = PLOT2;

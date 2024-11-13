@@ -1,0 +1,72 @@
+  TITLE: ML-MSST TIME9
+  DATA: FILE = "long9.csv";
+  VARIABLE:
+  NAMES = Sub time anger disgust fear sad;
+  USEVAR = anger disgust fear sad ;
+  CLUSTER = sub;
+  missing are all (999);
+  ANALYSIS:
+  TYPE = TWOLEVEL;
+  ESTIMATOR = BAYES;
+              proc=2;
+              BITERATIONS = (5000);
+              bseed=450; 
+              thin=10;
+MODEL:
+
+%WITHIN%
+
+! Latent state residual
+    eta BY anger@1
+    disgust (las2)
+    fear (las3)
+    sad (las4) ;
+
+! Latent errors and latent state variances
+    anger(o_err1) ;
+    disgust(o_err2) ;
+    fear(o_err3) ;
+    sad(o_err4) ;
+    eta(s_var) ;
+
+%BETWEEN%
+
+    ! Indicator trait variables
+    theta1  BY  anger@1 ;
+    theta2  BY  disgust@1 ;
+    theta3  BY  fear@1 ;
+    theta4  BY  sad@1 ;
+
+    ! Latent trait variable
+    theta BY theta1@1
+    theta2 (lat2)
+    theta3 (lat3)
+    theta4 (lat4) ;
+
+    ! Means and Intercepts
+    [anger@0] ;
+    [disgust@0] ;
+    [fear@0] ;
+    [sad@0] ;
+    [theta1@0] ;
+    [theta2*] ;
+    [theta3*] ;
+    [theta4*] ;
+    [theta*] ;
+
+    ! Fixing level-2 residual variances at 0 and latent trait variance
+    anger@0;
+    disgust@0;
+    fear@0;
+    sad@0;
+    theta1@0;
+    theta2@0;
+    theta3@0;
+    theta4@0;
+    theta(t_var) ;
+
+
+  OUTPUT:
+          TECH1 ;TECH8;
+
+          PLOT: TYPE = PLOT2;

@@ -1,0 +1,56 @@
+TITLE: ML-CUTSO TIME9
+DATA: FILE = "long9.csv";
+VARIABLE: 
+NAMES = Sub time anger disgust fear sad; 
+USEVAR = anger disgust fear sad ;
+CLUSTER = sub;
+missing are all (999);
+ANALYSIS:
+TYPE = TWOLEVEL;
+ESTIMATOR = BAYES;
+            proc=2;
+            BITERATIONS = (5000);
+            bseed=1234;
+            thin=10;
+
+MODEL:
+
+%WITHIN%
+
+! common states
+eta BY Anger@1
+disgust(las21)
+fear(las31)
+sad(&1 las41) ;
+
+eta(oc_var);
+anger (err11) ;
+disgust (err21) ;
+fear(err31) ;
+sad(err41) ;
+
+! Autoregressive effect on the latent state residual
+eta ON eta&1 (beta1);
+
+
+%BETWEEN%
+
+! common trait
+CT by Anger@1
+disgust@1.3
+fear(lat31)
+sad(lat41);
+
+!unique traits
+CT (ct_var) ;
+anger (ut_var1) ;
+disgust (ut_var2) ;
+fear (ut_var3) ;
+sad (ut_var4) ;
+
+
+
+OUTPUT:
+        TECH1 ;TECH8;
+
+        PLOT: TYPE = PLOT2;
