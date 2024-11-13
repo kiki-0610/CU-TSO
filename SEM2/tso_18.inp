@@ -1,0 +1,1222 @@
+TITLE:ML-TSO TIME18
+DATA: FILE = "wide18.csv";
+VARIABLE: 
+NAMES = anger_1- anger_18
+disgust_1-disgust_18
+fear_1-fear_18
+sad_1-sad_18; 
+missing are all (999);
+ 
+ANALYSIS:
+
+ESTIMATOR = BAYES;
+            proc=2; 
+            BITERATIONS = (5000);
+            bseed=450;
+            thin=10; 
+ 
+
+MODEL:
+
+! Latent occasion variables
+ occ1 BY anger_1@1
+disgust_1 (las21)
+fear_1 (las31)
+sad_1 (las41) ;
+
+occ2 BY anger_2@1
+disgust_2 (las21)
+fear_2 (las31)
+sad_2 (las41) ;
+
+occ3 BY anger_3@1
+disgust_3 (las21)
+fear_3 (las31)
+sad_3 (las41) ;
+
+occ4 BY anger_4@1
+disgust_4 (las21)
+fear_4 (las31)
+sad_4 (las41) ;
+
+occ5 BY anger_5@1
+disgust_5 (las21)
+fear_5 (las31)
+sad_5 (las41) ;
+
+occ6 BY anger_6@1
+disgust_6 (las21)
+fear_6 (las31)
+sad_6 (las41) ;
+
+occ7 BY anger_7@1
+disgust_7 (las21)
+fear_7 (las31)
+sad_7 (las41) ;
+
+occ8 BY anger_8@1
+disgust_8 (las21)
+fear_8 (las31)
+sad_8 (las41) ;
+
+occ9 BY anger_9@1
+disgust_9 (las21)
+fear_9 (las31)
+sad_9 (las41) ;
+
+occ10 BY anger_10@1
+disgust_10 (las21)
+fear_10 (las31)
+sad_10 (las41) ;
+
+occ11 BY anger_11@1
+disgust_11 (las21)
+fear_11 (las31)
+sad_11 (las41) ;
+
+occ12 BY anger_12@1
+disgust_12 (las21)
+fear_12 (las31)
+sad_12 (las41) ;
+
+occ13 BY anger_13@1
+disgust_13 (las21)
+fear_13 (las31)
+sad_13 (las41) ;
+
+occ14 BY anger_14@1
+disgust_14 (las21)
+fear_14 (las31)
+sad_14 (las41) ;
+
+occ15 BY anger_15@1
+disgust_15 (las21)
+fear_15 (las31)
+sad_15 (las41) ;
+
+occ16 BY anger_16@1
+disgust_16 (las21)
+fear_16 (las31)
+sad_16 (las41) ;
+
+occ17 BY anger_17@1
+disgust_17 (las21)
+fear_17 (las31)
+sad_17 (las41) ;
+
+occ18 BY anger_18@1
+disgust_18 (las21)
+fear_18 (las31)
+sad_18 (las41) ;
+
+
+! Latent trait indicators
+theta1 BY anger_1@1
+anger_2@1
+anger_3@1
+anger_4@1
+anger_5@1
+anger_6@1
+anger_7@1
+anger_8@1
+anger_9@1
+anger_10@1
+anger_11@1
+anger_12@1
+anger_13@1
+anger_14@1
+anger_15@1
+anger_16@1
+anger_17@1
+anger_18@1 ;
+
+theta2 BY disgust_1@1
+disgust_2@1
+disgust_3@1
+disgust_4@1
+disgust_5@1
+disgust_6@1
+disgust_7@1
+disgust_8@1
+disgust_9@1
+disgust_10@1
+disgust_11@1
+disgust_12@1
+disgust_13@1
+disgust_14@1
+disgust_15@1
+disgust_16@1
+disgust_17@1
+disgust_18@1 ;
+
+theta3 BY fear_1@1
+fear_2@1
+fear_3@1
+fear_4@1
+fear_5@1
+fear_6@1
+fear_7@1
+fear_8@1
+fear_9@1
+fear_10@1
+fear_11@1
+fear_12@1
+fear_13@1
+fear_14@1
+fear_15@1
+fear_16@1
+fear_17@1
+fear_18@1 ;
+
+theta4 BY sad_1@1
+sad_2@1
+sad_3@1
+sad_4@1
+sad_5@1
+sad_6@1
+sad_7@1
+sad_8@1
+sad_9@1
+sad_10@1
+sad_11@1
+sad_12@1
+sad_13@1
+sad_14@1
+sad_15@1
+sad_16@1
+sad_17@1
+sad_18@1 ;
+
+
+! Intercepts and means
+ [anger_1*] (ins11) ;
+[disgust_1*] (ins21) ;
+[fear_1*] (ins31) ;
+[sad_1*] (ins41) ;
+
+[anger_2*] (ins11) ;
+[disgust_2*] (ins21) ;
+[fear_2*] (ins31) ;
+[sad_2*] (ins41) ;
+
+[anger_3*] (ins11) ;
+[disgust_3*] (ins21) ;
+[fear_3*] (ins31) ;
+[sad_3*] (ins41) ;
+
+[anger_4*] (ins11) ;
+[disgust_4*] (ins21) ;
+[fear_4*] (ins31) ;
+[sad_4*] (ins41) ;
+
+[anger_5*] (ins11) ;
+[disgust_5*] (ins21) ;
+[fear_5*] (ins31) ;
+[sad_5*] (ins41) ;
+
+[anger_6*] (ins11) ;
+[disgust_6*] (ins21) ;
+[fear_6*] (ins31) ;
+[sad_6*] (ins41) ;
+
+[anger_7*] (ins11) ;
+[disgust_7*] (ins21) ;
+[fear_7*] (ins31) ;
+[sad_7*] (ins41) ;
+
+[anger_8*] (ins11) ;
+[disgust_8*] (ins21) ;
+[fear_8*] (ins31) ;
+[sad_8*] (ins41) ;
+
+[anger_9*] (ins11) ;
+[disgust_9*] (ins21) ;
+[fear_9*] (ins31) ;
+[sad_9*] (ins41) ;
+
+[anger_10*] (ins11) ;
+[disgust_10*] (ins21) ;
+[fear_10*] (ins31) ;
+[sad_10*] (ins41) ;
+
+[anger_11*] (ins11) ;
+[disgust_11*] (ins21) ;
+[fear_11*] (ins31) ;
+[sad_11*] (ins41) ;
+
+[anger_12*] (ins11) ;
+[disgust_12*] (ins21) ;
+[fear_12*] (ins31) ;
+[sad_12*] (ins41) ;
+
+[anger_13*] (ins11) ;
+[disgust_13*] (ins21) ;
+[fear_13*] (ins31) ;
+[sad_13*] (ins41) ;
+
+[anger_14*] (ins11) ;
+[disgust_14*] (ins21) ;
+[fear_14*] (ins31) ;
+[sad_14*] (ins41) ;
+
+[anger_15*] (ins11) ;
+[disgust_15*] (ins21) ;
+[fear_15*] (ins31) ;
+[sad_15*] (ins41) ;
+
+[anger_16*] (ins11) ;
+[disgust_16*] (ins21) ;
+[fear_16*] (ins31) ;
+[sad_16*] (ins41) ;
+
+[anger_17*] (ins11) ;
+[disgust_17*] (ins21) ;
+[fear_17*] (ins31) ;
+[sad_17*] (ins41) ;
+
+[anger_18*] (ins11) ;
+[disgust_18*] (ins21) ;
+[fear_18*] (ins31) ;
+[sad_18*] (ins41) ;
+
+  [occ1@0] ;
+  [occ2@0] ;
+  [occ3@0] ;
+  [occ4@0] ;
+  [occ5@0] ;
+  [occ6@0] ;
+  [occ7@0] ;
+  [occ8@0] ;
+  [occ9@0] ;
+  [occ10@0] ;
+  [occ11@0] ;
+  [occ12@0] ;
+  [occ13@0] ;
+  [occ14@0] ;
+  [occ15@0] ;
+  [occ16@0] ;
+  [occ17@0] ;
+  [occ18@0] ;
+
+! Set 0 correlations
+occ1 WITH occ2@0
+occ3@0
+occ4@0
+occ5@0
+occ6@0
+occ7@0
+occ8@0
+occ9@0
+occ10@0
+occ11@0
+occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0;
+occ2 WITH occ3@0
+occ4@0
+occ5@0
+occ6@0
+occ7@0
+occ8@0
+occ9@0
+occ10@0
+occ11@0
+occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ3 WITH occ4@0
+occ5@0
+occ6@0
+occ7@0
+occ8@0
+occ9@0
+occ10@0
+occ11@0
+occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0;
+occ4 WITH occ5@0
+occ6@0
+occ7@0
+occ8@0
+occ9@0
+occ10@0
+occ11@0
+occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ5 WITH occ6@0
+occ7@0
+occ8@0
+occ9@0
+occ10@0
+occ11@0
+occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ6 WITH occ7@0
+occ8@0
+occ9@0
+occ10@0
+occ11@0
+occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ7 WITH occ8@0
+occ9@0
+occ10@0
+occ11@0
+occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ8 WITH occ9@0
+occ10@0
+occ11@0
+occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ9 WITH occ10@0
+occ11@0
+occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ10 WITH occ11@0
+occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ11 WITH occ12@0
+occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ12 WITH occ13@0
+occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ13 WITH occ14@0
+occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ14 WITH occ15@0
+occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+ theta4@0;
+occ15 WITH occ16@0
+occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ16 WITH occ17@0
+occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ17 WITH occ18@0
+theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+occ18 WITH theta1@0
+theta2@0
+theta3@0
+theta4@0 ;
+
+
+
+
+! autoregressive effects
+occ2 ON occ1 (beta1) ;
+occ3 ON occ2 (beta1) ;
+occ4 ON occ3 (beta1) ;
+occ5 ON occ4 (beta1) ;
+occ6 ON occ5 (beta1) ;
+occ7 ON occ6 (beta1) ;
+occ8 ON occ7 (beta1) ;
+occ9 ON occ8 (beta1) ;
+occ10 ON occ9 (beta1) ;
+occ11 ON occ10 (beta1) ;
+occ12 ON occ11 (beta1) ;
+occ13 ON occ12 (beta1) ;
+occ14 ON occ13 (beta1) ;
+occ15 ON occ14 (beta1) ;
+occ16 ON occ15 (beta1) ;
+occ17 ON occ16 (beta1) ;
+occ18 ON occ17 (beta1) ;
+
+! Variance components
+anger_1 (err11) ;
+disgust_1 (err21) ;
+fear_1 (err31) ;
+sad_1 (err41) ;
+
+anger_2 (err11) ;
+disgust_2 (err21) ;
+fear_2 (err31) ;
+sad_2 (err41) ;
+
+anger_3 (err11) ;
+disgust_3 (err21) ;
+fear_3 (err31) ;
+sad_3 (err41) ;
+
+anger_4 (err11) ;
+disgust_4 (err21) ;
+fear_4 (err31) ;
+sad_4 (err41) ;
+
+anger_5 (err11) ;
+disgust_5 (err21) ;
+fear_5 (err31) ;
+sad_5 (err41) ;
+
+anger_6 (err11) ;
+disgust_6 (err21) ;
+fear_6 (err31) ;
+sad_6 (err41) ;
+
+anger_7 (err11) ;
+disgust_7 (err21) ;
+fear_7 (err31) ;
+sad_7 (err41) ;
+
+anger_8 (err11) ;
+disgust_8 (err21) ;
+fear_8 (err31) ;
+sad_8 (err41) ;
+
+anger_9 (err11) ;
+disgust_9 (err21) ;
+fear_9 (err31) ;
+sad_9 (err41) ;
+
+anger_10 (err11) ;
+disgust_10 (err21) ;
+fear_10 (err31) ;
+sad_10 (err41) ;
+
+anger_11 (err11) ;
+disgust_11 (err21) ;
+fear_11 (err31) ;
+sad_11 (err41) ;
+
+anger_12 (err11) ;
+disgust_12 (err21) ;
+fear_12 (err31) ;
+sad_12 (err41) ;
+
+anger_13 (err11) ;
+disgust_13 (err21) ;
+fear_13 (err31) ;
+sad_13 (err41) ;
+
+anger_14 (err11) ;
+disgust_14 (err21) ;
+fear_14 (err31) ;
+sad_14 (err41) ;
+
+anger_15 (err11) ;
+disgust_15 (err21) ;
+fear_15 (err31) ;
+sad_15 (err41) ;
+
+anger_16 (err11) ;
+disgust_16 (err21) ;
+fear_16 (err31) ;
+sad_16 (err41) ;
+
+anger_17 (err11) ;
+disgust_17 (err21) ;
+fear_17 (err31) ;
+sad_17 (err41) ;
+
+anger_18 (err11) ;
+disgust_18 (err21) ;
+fear_18 (err31) ;
+sad_18 (err41) ;
+
+occ1 (oc_var) ;
+occ2 (oc_var) ;
+occ3 (oc_var) ;
+occ4 (oc_var) ;
+occ5 (oc_var) ;
+occ6 (oc_var) ;
+occ7 (oc_var) ;
+occ8 (oc_var) ;
+occ9 (oc_var) ;
+occ10 (oc_var) ;
+occ11 (oc_var) ;
+occ12 (oc_var) ;
+occ13 (oc_var) ;
+occ14 (oc_var) ;
+occ15 (oc_var) ;
+occ16 (oc_var) ;
+occ17 (oc_var) ;
+occ18 (oc_var) ;
+theta1(t_var1) ;
+theta2(t_var2) ;
+theta3(t_var3) ;
+theta4(t_var4) ;
+
+
+
+
+MODEL CONSTRAINT:
+  NEW(TOTALA1-TOTALA18  RELA1-RELA18  CONA1-CONA18  PTA1-PTA18  UPTA1-UPTA18 
+  OCCA1-OCCA18 );!ANGER
+
+  NEW(TOTALD1-TOTALD18  RELD1-RELD18  COND1-COND18  PTD1-PTD18  UPTD1-UPTD18 
+  OCCD1-OCCD18  );!DISGUST
+
+  NEW(TOTALF1-TOTALF18  RELF1-RELF18  CONF1-CONF18  PTF1-PTF18  UPTF1-UPTF18 
+  OCCF1-OCCF18 );!FEAR
+
+  NEW(TOTALS1-TOTALS18  RELS1-RELS18  CONS1-CONS18  PTS1-PTS18  UPTS1-UPTS18 
+  OCCS1-OCCS18 );!SAD
+
+  NEW(RELA CONA OCCA PTA UPTA 
+  RELD COND OCCD PTD UPTD
+  RELF CONF OCCF PTF UPTF
+  RELS CONS OCCS PTS UPTS);
+
+  TOTALA1	=	t_var1	+	oc_var	+	err11	;																				
+TOTALA2	=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	4	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA3	=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	6	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA4	=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	8	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA5	=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	10	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA6	=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	12	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA7	=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	14	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA8	=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	16	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA9	=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	18	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA10=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	20	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA11=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	22	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA12=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	24	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA13=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	26	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA14=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	28	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA15=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	30	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA16=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	32	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA17=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	32	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+TOTALA18=	t_var1	+	oc_var	*	(	1	-	beta1 	^ 	36	)	/	(	1	-	beta1 	^ 	2	)	+	err11	;				
+																											
+TOTALD1	=	t_var2	+	las21	^	2	*	oc_var	+	err21	;																
+TOTALD2	=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	4	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD3	=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	6	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD4	=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	8	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD5	=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	10	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD6	=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	12	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD7	=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	14	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD8	=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	16	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD9	=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	18	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD10=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	20	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD11=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	22	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD12=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	24	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD13=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	26	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD14=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	28	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD15=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	30	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD16=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	32	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD17=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	32	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+TOTALD18=	t_var2	+	las21	^	2	*	oc_var	*	(1	-	beta1 	^ 	36	)	/	(1	-	beta1 	^ 	2)	+	err21	;
+																											
+TOTALF1	=	t_var3	+	las31	^	2	*	oc_var	+	err31	;																
+TOTALF2	=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	4	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF3	=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	6	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF4	=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	8	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF5	=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	10	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF6	=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	12	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF7	=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	14	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF8	=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	16	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF9	=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	18	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF10=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	20	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF11=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	22	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF12=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	24	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF13=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	26	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF14=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	28	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF15=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	30	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF16=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	32	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF17=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	32	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+TOTALF18=	t_var3	+	las31	^	2	*	oc_var	*	(1	-	beta1 	^ 	36	)	/	(1	-	beta1 	^ 	2)	+	err31	;
+																											
+TOTALS1	=	t_var4	+	las41	^	2	*	oc_var	+	err41	;																
+TOTALS2	=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	4	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS3	=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	6	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS4	=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	8	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS5	=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	10	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS6	=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	12	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS7	=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	14	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS8	=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	16	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS9	=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	18	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS10=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	20	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS11=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	22	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS12=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	24	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS13=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	26	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS14=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	28	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS15=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	30	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS16=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	32	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS17=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	32	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+TOTALS18=	t_var4	+	las41	^	2	*	oc_var	*	(1	-	beta1 	^ 	36	)	/	(1	-	beta1 	^ 	2)	+	err41	;
+
+
+RELA1	=	1	-	(	err11	/	TOTALA1	)	;
+RELA2	=	1	-	(	err11	/	TOTALA2	)	;
+RELA3	=	1	-	(	err11	/	TOTALA3	)	;
+RELA4	=	1	-	(	err11	/	TOTALA4	)	;
+RELA5	=	1	-	(	err11	/	TOTALA5	)	;
+RELA6	=	1	-	(	err11	/	TOTALA6	)	;
+RELA7	=	1	-	(	err11	/	TOTALA7	)	;
+RELA8	=	1	-	(	err11	/	TOTALA8	)	;
+RELA9	=	1	-	(	err11	/	TOTALA9	)	;
+RELA10	=	1	-	(	err11	/	TOTALA10	)	;
+RELA11	=	1	-	(	err11	/	TOTALA11	)	;
+RELA12	=	1	-	(	err11	/	TOTALA12	)	;
+RELA13	=	1	-	(	err11	/	TOTALA13	)	;
+RELA14	=	1	-	(	err11	/	TOTALA14	)	;
+RELA15	=	1	-	(	err11	/	TOTALA15	)	;
+RELA16	=	1	-	(	err11	/	TOTALA16	)	;
+RELA17	=	1	-	(	err11	/	TOTALA17	)	;
+RELA18	=	1	-	(	err11	/	TOTALA18	)	;
+									
+RELD1	=	1	-	(	err21	/	TOTALD1	)	;
+RELD2	=	1	-	(	err21	/	TOTALD2	)	;
+RELD3	=	1	-	(	err21	/	TOTALD3	)	;
+RELD4	=	1	-	(	err21	/	TOTALD4	)	;
+RELD5	=	1	-	(	err21	/	TOTALD5	)	;
+RELD6	=	1	-	(	err21	/	TOTALD6	)	;
+RELD7	=	1	-	(	err21	/	TOTALD7	)	;
+RELD8	=	1	-	(	err21	/	TOTALD8	)	;
+RELD9	=	1	-	(	err21	/	TOTALD9	)	;
+RELD10	=	1	-	(	err21	/	TOTALD10	)	;
+RELD11	=	1	-	(	err21	/	TOTALD11	)	;
+RELD12	=	1	-	(	err21	/	TOTALD12	)	;
+RELD13	=	1	-	(	err21	/	TOTALD13	)	;
+RELD14	=	1	-	(	err21	/	TOTALD14	)	;
+RELD15	=	1	-	(	err21	/	TOTALD15	)	;
+RELD16	=	1	-	(	err21	/	TOTALD16	)	;
+RELD17	=	1	-	(	err21	/	TOTALD17	)	;
+RELD18	=	1	-	(	err21	/	TOTALD18	)	;
+									
+RELF1	=	1	-	(	err31	/	TOTALF1	)	;
+RELF2	=	1	-	(	err31	/	TOTALF2	)	;
+RELF3	=	1	-	(	err31	/	TOTALF3	)	;
+RELF4	=	1	-	(	err31	/	TOTALF4	)	;
+RELF5	=	1	-	(	err31	/	TOTALF5	)	;
+RELF6	=	1	-	(	err31	/	TOTALF6	)	;
+RELF7	=	1	-	(	err31	/	TOTALF7	)	;
+RELF8	=	1	-	(	err31	/	TOTALF8	)	;
+RELF9	=	1	-	(	err31	/	TOTALF9	)	;
+RELF10	=	1	-	(	err31	/	TOTALF10	)	;
+RELF11	=	1	-	(	err31	/	TOTALF11	)	;
+RELF12	=	1	-	(	err31	/	TOTALF12	)	;
+RELF13	=	1	-	(	err31	/	TOTALF13	)	;
+RELF14	=	1	-	(	err31	/	TOTALF14	)	;
+RELF15	=	1	-	(	err31	/	TOTALF15	)	;
+RELF16	=	1	-	(	err31	/	TOTALF16	)	;
+RELF17	=	1	-	(	err31	/	TOTALF17	)	;
+RELF18	=	1	-	(	err31	/	TOTALF18	)	;
+									
+RELS1	=	1	-	(	err41	/	TOTALS1	)	;
+RELS2	=	1	-	(	err41	/	TOTALS2	)	;
+RELS3	=	1	-	(	err41	/	TOTALS3	)	;
+RELS4	=	1	-	(	err41	/	TOTALS4	)	;
+RELS5	=	1	-	(	err41	/	TOTALS5	)	;
+RELS6	=	1	-	(	err41	/	TOTALS6	)	;
+RELS7	=	1	-	(	err41	/	TOTALS7	)	;
+RELS8	=	1	-	(	err41	/	TOTALS8	)	;
+RELS9	=	1	-	(	err41	/	TOTALS9	)	;
+RELS10	=	1	-	(	err41	/	TOTALS10	)	;
+RELS11	=	1	-	(	err41	/	TOTALS11	)	;
+RELS12	=	1	-	(	err41	/	TOTALS12	)	;
+RELS13	=	1	-	(	err41	/	TOTALS13	)	;
+RELS14	=	1	-	(	err41	/	TOTALS14	)	;
+RELS15	=	1	-	(	err41	/	TOTALS15	)	;
+RELS16	=	1	-	(	err41	/	TOTALS16	)	;
+RELS17	=	1	-	(	err41	/	TOTALS17	)	;
+RELS18	=	1	-	(	err41	/	TOTALS18	)	;
+  
+OCCA1	=	oc_var	/	TOTALA1	;				
+OCCA2	=	oc_var	/	TOTALA2	;				
+OCCA3	=	oc_var	/	TOTALA3	;				
+OCCA4	=	oc_var	/	TOTALA4	;				
+OCCA5	=	oc_var	/	TOTALA5	;				
+OCCA6	=	oc_var	/	TOTALA6	;				
+OCCA7	=	oc_var	/	TOTALA7	;				
+OCCA8	=	oc_var	/	TOTALA8	;				
+OCCA9	=	oc_var	/	TOTALA9	;				
+OCCA10	=	oc_var	/	TOTALA10	;				
+OCCA11	=	oc_var	/	TOTALA11	;				
+OCCA12	=	oc_var	/	TOTALA12	;				
+OCCA13	=	oc_var	/	TOTALA13	;				
+OCCA14	=	oc_var	/	TOTALA14	;				
+OCCA15	=	oc_var	/	TOTALA15	;				
+OCCA16	=	oc_var	/	TOTALA16	;				
+OCCA17	=	oc_var	/	TOTALA17	;				
+OCCA18	=	oc_var	/	TOTALA18	;				
+									
+									
+OCCD1	=	las21	^	2	*	oc_var	/	TOTALD1	;
+OCCD2	=	las21	^	2	*	oc_var	/	TOTALD2	;
+OCCD3	=	las21	^	2	*	oc_var	/	TOTALD3	;
+OCCD4	=	las21	^	2	*	oc_var	/	TOTALD4	;
+OCCD5	=	las21	^	2	*	oc_var	/	TOTALD5	;
+OCCD6	=	las21	^	2	*	oc_var	/	TOTALD6	;
+OCCD7	=	las21	^	2	*	oc_var	/	TOTALD7	;
+OCCD8	=	las21	^	2	*	oc_var	/	TOTALD8	;
+OCCD9	=	las21	^	2	*	oc_var	/	TOTALD9	;
+OCCD10	=	las21	^	2	*	oc_var	/	TOTALD10	;
+OCCD11	=	las21	^	2	*	oc_var	/	TOTALD11	;
+OCCD12	=	las21	^	2	*	oc_var	/	TOTALD12	;
+OCCD13	=	las21	^	2	*	oc_var	/	TOTALD13	;
+OCCD14	=	las21	^	2	*	oc_var	/	TOTALD14	;
+OCCD15	=	las21	^	2	*	oc_var	/	TOTALD15	;
+OCCD16	=	las21	^	2	*	oc_var	/	TOTALD16	;
+OCCD17	=	las21	^	2	*	oc_var	/	TOTALD17	;
+OCCD18	=	las21	^	2	*	oc_var	/	TOTALD18	;
+									
+									
+OCCF1	=	las31	^	2	*	oc_var	/	TOTALF1	;
+OCCF2	=	las31	^	2	*	oc_var	/	TOTALF2	;
+OCCF3	=	las31	^	2	*	oc_var	/	TOTALF3	;
+OCCF4	=	las31	^	2	*	oc_var	/	TOTALF4	;
+OCCF5	=	las31	^	2	*	oc_var	/	TOTALF5	;
+OCCF6	=	las31	^	2	*	oc_var	/	TOTALF6	;
+OCCF7	=	las31	^	2	*	oc_var	/	TOTALF7	;
+OCCF8	=	las31	^	2	*	oc_var	/	TOTALF8	;
+OCCF9	=	las31	^	2	*	oc_var	/	TOTALF9	;
+OCCF10	=	las31	^	2	*	oc_var	/	TOTALF10	;
+OCCF11	=	las31	^	2	*	oc_var	/	TOTALF11	;
+OCCF12	=	las31	^	2	*	oc_var	/	TOTALF12	;
+OCCF13	=	las31	^	2	*	oc_var	/	TOTALF13	;
+OCCF14	=	las31	^	2	*	oc_var	/	TOTALF14	;
+OCCF15	=	las31	^	2	*	oc_var	/	TOTALF15	;
+OCCF16	=	las31	^	2	*	oc_var	/	TOTALF16	;
+OCCF17	=	las31	^	2	*	oc_var	/	TOTALF17	;
+OCCF18	=	las31	^	2	*	oc_var	/	TOTALF18	;									
+									
+OCCS1	=	las41	^	2	*	oc_var	/	TOTALS1	;
+OCCS2	=	las41	^	2	*	oc_var	/	TOTALS2	;
+OCCS3	=	las41	^	2	*	oc_var	/	TOTALS3	;
+OCCS4	=	las41	^	2	*	oc_var	/	TOTALS4	;
+OCCS5	=	las41	^	2	*	oc_var	/	TOTALS5	;
+OCCS6	=	las41	^	2	*	oc_var	/	TOTALS6	;
+OCCS7	=	las41	^	2	*	oc_var	/	TOTALS7	;
+OCCS8	=	las41	^	2	*	oc_var	/	TOTALS8	;
+OCCS9	=	las41	^	2	*	oc_var	/	TOTALS9	;
+OCCS10	=	las41	^	2	*	oc_var	/	TOTALS10	;
+OCCS11	=	las41	^	2	*	oc_var	/	TOTALS11	;
+OCCS12	=	las41	^	2	*	oc_var	/	TOTALS12	;
+OCCS13	=	las41	^	2	*	oc_var	/	TOTALS13	;
+OCCS14	=	las41	^	2	*	oc_var	/	TOTALS14	;
+OCCS15	=	las41	^	2	*	oc_var	/	TOTALS15	;
+OCCS16	=	las41	^	2	*	oc_var	/	TOTALS16	;
+OCCS17	=	las41	^	2	*	oc_var	/	TOTALS17	;
+OCCS18	=	las41	^	2	*	oc_var	/	TOTALS18	;
+
+CONA1	=	RELA1	-	OCCA1	;
+CONA2	=	RELA2	-	OCCA2	;
+CONA3	=	RELA3	-	OCCA3	;
+CONA4	=	RELA4	-	OCCA4	;
+CONA5	=	RELA5	-	OCCA5	;
+CONA6	=	RELA6	-	OCCA6	;
+CONA7	=	RELA7	-	OCCA7	;
+CONA8	=	RELA8	-	OCCA8	;
+CONA9	=	RELA9	-	OCCA9	;
+CONA10	=	RELA10	-	OCCA10	;
+CONA11	=	RELA11	-	OCCA11	;
+CONA12	=	RELA12	-	OCCA12	;
+CONA13	=	RELA13	-	OCCA13	;
+CONA14	=	RELA14	-	OCCA14	;
+CONA15	=	RELA15	-	OCCA15	;
+CONA16	=	RELA16	-	OCCA16	;
+CONA17	=	RELA17	-	OCCA17	;
+CONA18	=	RELA18	-	OCCA18	;
+					
+					
+COND1	=	RELD1	-	OCCD1	;
+COND2	=	RELD2	-	OCCD2	;
+COND3	=	RELD3	-	OCCD3	;
+COND4	=	RELD4	-	OCCD4	;
+COND5	=	RELD5	-	OCCD5	;
+COND6	=	RELD6	-	OCCD6	;
+COND7	=	RELD7	-	OCCD7	;
+COND8	=	RELD8	-	OCCD8	;
+COND9	=	RELD9	-	OCCD9	;
+COND10	=	RELD10	-	OCCD10	;
+COND11	=	RELD11	-	OCCD11	;
+COND12	=	RELD12	-	OCCD12	;
+COND13	=	RELD13	-	OCCD13	;
+COND14	=	RELD14	-	OCCD14	;
+COND15	=	RELD15	-	OCCD15	;
+COND16	=	RELD16	-	OCCD16	;
+COND17	=	RELD17	-	OCCD17	;
+COND18	=	RELD18	-	OCCD18	;
+					
+					
+CONF1	=	RELF1	-	OCCF1	;
+CONF2	=	RELF2	-	OCCF2	;
+CONF3	=	RELF3	-	OCCF3	;
+CONF4	=	RELF4	-	OCCF4	;
+CONF5	=	RELF5	-	OCCF5	;
+CONF6	=	RELF6	-	OCCF6	;
+CONF7	=	RELF7	-	OCCF7	;
+CONF8	=	RELF8	-	OCCF8	;
+CONF9	=	RELF9	-	OCCF9	;
+CONF10	=	RELF10	-	OCCF10	;
+CONF11	=	RELF11	-	OCCF11	;
+CONF12	=	RELF12	-	OCCF12	;
+CONF13	=	RELF13	-	OCCF13	;
+CONF14	=	RELF14	-	OCCF14	;
+CONF15	=	RELF15	-	OCCF15	;
+CONF16	=	RELF16	-	OCCF16	;
+CONF17	=	RELF17	-	OCCF17	;
+CONF18	=	RELF18	-	OCCF18	;
+					
+					
+CONS1	=	RELS1	-	OCCS1	;
+CONS2	=	RELS2	-	OCCS2	;
+CONS3	=	RELS3	-	OCCS3	;
+CONS4	=	RELS4	-	OCCS4	;
+CONS5	=	RELS5	-	OCCS5	;
+CONS6	=	RELS6	-	OCCS6	;
+CONS7	=	RELS7	-	OCCS7	;
+CONS8	=	RELS8	-	OCCS8	;
+CONS9	=	RELS9	-	OCCS9	;
+CONS10	=	RELS10	-	OCCS10	;
+CONS11	=	RELS11	-	OCCS11	;
+CONS12	=	RELS12	-	OCCS12	;
+CONS13	=	RELS13	-	OCCS13	;
+CONS14	=	RELS14	-	OCCS14	;
+CONS15	=	RELS15	-	OCCS15	;
+CONS16	=	RELS16	-	OCCS16	;
+CONS17	=	RELS17	-	OCCS17	;
+CONS18	=	RELS18	-	OCCS18	;
+
+
+PTA1	=	t_var1	/	TOTALA1	;
+PTA2	=	t_var1	/	TOTALA2	;
+PTA3	=	t_var1	/	TOTALA3	;
+PTA4	=	t_var1	/	TOTALA4	;
+PTA5	=	t_var1	/	TOTALA5	;
+PTA6	=	t_var1	/	TOTALA6	;
+PTA7	=	t_var1	/	TOTALA7	;
+PTA8	=	t_var1	/	TOTALA8	;
+PTA9	=	t_var1	/	TOTALA9	;
+PTA10	=	t_var1	/	TOTALA10	;
+PTA11	=	t_var1	/	TOTALA11	;
+PTA12	=	t_var1	/	TOTALA12	;
+PTA13	=	t_var1	/	TOTALA13	;
+PTA14	=	t_var1	/	TOTALA14	;
+PTA15	=	t_var1	/	TOTALA15	;
+PTA16	=	t_var1	/	TOTALA16	;
+PTA17	=	t_var1	/	TOTALA17	;
+PTA18	=	t_var1	/	TOTALA18	;
+					
+					
+PTD1	=	t_var2	/	TOTALD1	;
+PTD2	=	t_var2	/	TOTALD2	;
+PTD3	=	t_var2	/	TOTALD3	;
+PTD4	=	t_var2	/	TOTALD4	;
+PTD5	=	t_var2	/	TOTALD5	;
+PTD6	=	t_var2	/	TOTALD6	;
+PTD7	=	t_var2	/	TOTALD7	;
+PTD8	=	t_var2	/	TOTALD8	;
+PTD9	=	t_var2	/	TOTALD9	;
+PTD10	=	t_var2	/	TOTALD10	;
+PTD11	=	t_var2	/	TOTALD11	;
+PTD12	=	t_var2	/	TOTALD12	;
+PTD13	=	t_var2	/	TOTALD13	;
+PTD14	=	t_var2	/	TOTALD14	;
+PTD15	=	t_var2	/	TOTALD15	;
+PTD16	=	t_var2	/	TOTALD16	;
+PTD17	=	t_var2	/	TOTALD17	;
+PTD18	=	t_var2	/	TOTALD18	;
+					
+					
+PTF1	=	t_var3	/	TOTALF1	;
+PTF2	=	t_var3	/	TOTALF2	;
+PTF3	=	t_var3	/	TOTALF3	;
+PTF4	=	t_var3	/	TOTALF4	;
+PTF5	=	t_var3	/	TOTALF5	;
+PTF6	=	t_var3	/	TOTALF6	;
+PTF7	=	t_var3	/	TOTALF7	;
+PTF8	=	t_var3	/	TOTALF8	;
+PTF9	=	t_var3	/	TOTALF9	;
+PTF10	=	t_var3	/	TOTALF10	;
+PTF11	=	t_var3	/	TOTALF11	;
+PTF12	=	t_var3	/	TOTALF12	;
+PTF13	=	t_var3	/	TOTALF13	;
+PTF14	=	t_var3	/	TOTALF14	;
+PTF15	=	t_var3	/	TOTALF15	;
+PTF16	=	t_var3	/	TOTALF16	;
+PTF17	=	t_var3	/	TOTALF17	;
+PTF18	=	t_var3	/	TOTALF18	;
+					
+					
+PTS1	=	t_var4	/	TOTALS1	;
+PTS2	=	t_var4	/	TOTALS2	;
+PTS3	=	t_var4	/	TOTALS3	;
+PTS4	=	t_var4	/	TOTALS4	;
+PTS5	=	t_var4	/	TOTALS5	;
+PTS6	=	t_var4	/	TOTALS6	;
+PTS7	=	t_var4	/	TOTALS7	;
+PTS8	=	t_var4	/	TOTALS8	;
+PTS9	=	t_var4	/	TOTALS9	;
+PTS10	=	t_var4	/	TOTALS10	;
+PTS11	=	t_var4	/	TOTALS11	;
+PTS12	=	t_var4	/	TOTALS12	;
+PTS13	=	t_var4	/	TOTALS13	;
+PTS14	=	t_var4	/	TOTALS14	;
+PTS15	=	t_var4	/	TOTALS15	;
+PTS16	=	t_var4	/	TOTALS16	;
+PTS17	=	t_var4	/	TOTALS17	;
+PTS18	=	t_var4	/	TOTALS18	;
+
+
+UPTA1	=	CONA1	-	PTA1	;
+UPTA2	=	CONA2	-	PTA2	;
+UPTA3	=	CONA3	-	PTA3	;
+UPTA4	=	CONA4	-	PTA4	;
+UPTA5	=	CONA5	-	PTA5	;
+UPTA6	=	CONA6	-	PTA6	;
+UPTA7	=	CONA7	-	PTA7	;
+UPTA8	=	CONA8	-	PTA8	;
+UPTA9	=	CONA9	-	PTA9	;
+UPTA10	=	CONA10	-	PTA10	;
+UPTA11	=	CONA11	-	PTA11	;
+UPTA12	=	CONA12	-	PTA12	;
+UPTA13	=	CONA13	-	PTA13	;
+UPTA14	=	CONA14	-	PTA14	;
+UPTA15	=	CONA15	-	PTA15	;
+UPTA16	=	CONA16	-	PTA16	;
+UPTA17	=	CONA17	-	PTA17	;
+UPTA18	=	CONA18	-	PTA18	;
+					
+					
+UPTD1	=	COND1	-	PTD1	;
+UPTD2	=	COND2	-	PTD2	;
+UPTD3	=	COND3	-	PTD3	;
+UPTD4	=	COND4	-	PTD4	;
+UPTD5	=	COND5	-	PTD5	;
+UPTD6	=	COND6	-	PTD6	;
+UPTD7	=	COND7	-	PTD7	;
+UPTD8	=	COND8	-	PTD8	;
+UPTD9	=	COND9	-	PTD9	;
+UPTD10	=	COND10	-	PTD10	;
+UPTD11	=	COND11	-	PTD11	;
+UPTD12	=	COND12	-	PTD12	;
+UPTD13	=	COND13	-	PTD13	;
+UPTD14	=	COND14	-	PTD14	;
+UPTD15	=	COND15	-	PTD15	;
+UPTD16	=	COND16	-	PTD16	;
+UPTD17	=	COND17	-	PTD17	;
+UPTD18	=	COND18	-	PTD18	;
+					
+					
+UPTF1	=	CONF1	-	PTF1	;
+UPTF2	=	CONF2	-	PTF2	;
+UPTF3	=	CONF3	-	PTF3	;
+UPTF4	=	CONF4	-	PTF4	;
+UPTF5	=	CONF5	-	PTF5	;
+UPTF6	=	CONF6	-	PTF6	;
+UPTF7	=	CONF7	-	PTF7	;
+UPTF8	=	CONF8	-	PTF8	;
+UPTF9	=	CONF9	-	PTF9	;
+UPTF10	=	CONF10	-	PTF10	;
+UPTF11	=	CONF11	-	PTF11	;
+UPTF12	=	CONF12	-	PTF12	;
+UPTF13	=	CONF13	-	PTF13	;
+UPTF14	=	CONF14	-	PTF14	;
+UPTF15	=	CONF15	-	PTF15	;
+UPTF16	=	CONF16	-	PTF16	;
+UPTF17	=	CONF17	-	PTF17	;
+UPTF18	=	CONF18	-	PTF18	;
+					
+					
+UPTS1	=	CONS1	-	PTS1	;
+UPTS2	=	CONS2	-	PTS2	;
+UPTS3	=	CONS3	-	PTS3	;
+UPTS4	=	CONS4	-	PTS4	;
+UPTS5	=	CONS5	-	PTS5	;
+UPTS6	=	CONS6	-	PTS6	;
+UPTS7	=	CONS7	-	PTS7	;
+UPTS8	=	CONS8	-	PTS8	;
+UPTS9	=	CONS9	-	PTS9	;
+UPTS10	=	CONS10	-	PTS10	;
+UPTS11	=	CONS11	-	PTS11	;
+UPTS12	=	CONS12	-	PTS12	;
+UPTS13	=	CONS13	-	PTS13	;
+UPTS14	=	CONS14	-	PTS14	;
+UPTS15	=	CONS15	-	PTS15	;
+UPTS16	=	CONS16	-	PTS16	;
+UPTS17	=	CONS17	-	PTS17	;
+UPTS18	=	CONS18	-	PTS18	;
+
+
+RELA=(RELA1+RELA2+RELA3+RELA4+RELA5+RELA6+RELA7+RELA8+RELA9+RELA10+
+RELA11+RELA12+RELA13+RELA14+RELA15+RELA16+RELA17+RELA18)/18;
+
+CONA=(CONA1+CONA2+CONA3+CONA4+CONA5+CONA6+CONA7+CONA8+CONA9+CONA10+
+CONA11+CONA12+CONA13+CONA14+CONA15+CONA16+CONA17+CONA18)/18;
+
+OCCA=(OCCA1+OCCA2+OCCA3+OCCA4+OCCA5+OCCA6+OCCA7+OCCA8+OCCA9+OCCA10+
+OCCA11+OCCA12+OCCA13+OCCA14+OCCA15+OCCA16+OCCA17+OCCA18)/18;
+
+PTA=(PTA2+PTA3+PTA4+PTA5+PTA6+PTA7+PTA8+PTA9+PTA10+
+PTA11+PTA12+PTA13+PTA14+PTA15+PTA16+PTA17+PTA18)/17;
+
+UPTA=(UPTA2+UPTA3+UPTA4+UPTA5+UPTA6+UPTA7+UPTA8+UPTA9+UPTA10+
+UPTA11+UPTA12+UPTA13+UPTA14+UPTA15+UPTA16+UPTA17+UPTA18)/17;
+
+RELD=(RELD1+RELD2+RELD3+RELD4+RELD5+RELD6+RELD7+RELD8+RELD9+RELD10+
+RELD11+RELD12+RELD13+RELD14+RELD15+RELD16+RELD17+RELD18)/18;
+
+COND=(COND1+COND2+COND3+COND4+COND5+COND6+COND7+COND8+COND9+COND10+
+COND11+COND12+COND13+COND14+COND15+COND16+COND17+COND18)/18;
+
+OCCD=(OCCD1+OCCD2+OCCD3+OCCD4+OCCD5+OCCD6+OCCD7+OCCD8+OCCD9+OCCD10+
+OCCD11+OCCD12+OCCD13+OCCD14+OCCD15+OCCD16+OCCD17+OCCD18)/18;
+
+PTD=(PTD2+PTD3+PTD4+PTD5+PTD6+PTD7+PTD8+PTD9+PTD10+
+PTD11+PTD12+PTD13+PTD14+PTD15+PTD16+PTD17+PTD18)/17;
+
+UPTD=(UPTD2+UPTD3+UPTD4+UPTD5+UPTD6+UPTD7+UPTD8+UPTD9+UPTD10+
+UPTD11+UPTD12+UPTD13+UPTD14+UPTD15+UPTD16+UPTD17+UPTD18)/17;
+
+RELF=(RELF1+RELF2+RELF3+RELF4+RELF5+RELF6+RELF7+RELF8+RELF9+RELF10+
+RELF11+RELF12+RELF13+RELF14+RELF15+RELF16+RELF17+RELF18)/18;
+
+CONF=(CONF1+CONF2+CONF3+CONF4+CONF5+CONF6+CONF7+CONF8+CONF9+CONF10+
+CONF11+CONF12+CONF13+CONF14+CONF15+CONF16+CONF17+CONF18)/18;
+
+OCCF=(OCCF1+OCCF2+OCCF3+OCCF4+OCCF5+OCCF6+OCCF7+OCCF8+OCCF9+OCCF10+
+OCCF11+OCCF12+OCCF13+OCCF14+OCCF15+OCCF16+OCCF17+OCCF18)/18;
+
+PTF=(PTF2+PTF3+PTF4+PTF5+PTF6+PTF7+PTF8+PTF9+PTF10+
+PTF11+PTF12+PTF13+PTF14+PTF15+PTF16+PTF17+PTF18)/17;
+
+UPTF=(UPTF2+UPTF3+UPTF4+UPTF5+UPTF6+UPTF7+UPTF8+UPTF9+UPTF10+
+UPTF11+UPTF12+UPTF13+UPTF14+UPTF15+UPTF16+UPTF17+UPTF18)/17;
+
+RELS=(RELS1+RELS2+RELS3+RELS4+RELS5+RELS6+RELS7+RELS8+RELS9+RELS10+
+RELS11+RELS12+RELS13+RELS14+RELS15+RELS16+RELS17+RELS18)/18;
+
+CONS=(CONS1+CONS2+CONS3+CONS4+CONS5+CONS6+CONS7+CONS8+CONS9+CONS10+
+CONS11+CONS12+CONS13+CONS14+CONS15+CONS16+CONS17+CONS18)/18;
+
+OCCS=(OCCS1+OCCS2+OCCS3+OCCS4+OCCS5+OCCS6+OCCS7+OCCS8+OCCS9+OCCS10+
+OCCS11+OCCS12+OCCS13+OCCS14+OCCS15+OCCS16+OCCS17+OCCS18)/18;
+
+PTS=(PTS2+PTS3+PTS4+PTS5+PTS6+PTS7+PTS8+PTS9+PTS10+
+PTS11+PTS12+PTS13+PTS14+PTS15+PTS16+PTS17+PTS18)/17;
+
+UPTS=(UPTS2+UPTS3+UPTS4+UPTS5+UPTS6+UPTS7+UPTS8+UPTS9+UPTS10+
+UPTS11+UPTS12+UPTS13+UPTS14+UPTS15+UPTS16+UPTS17+UPTS18)/17;
+
+
+
+
+ OUTPUT:
+TECH1 ;TECH8;
+
+  PLOT: TYPE = PLOT2;
