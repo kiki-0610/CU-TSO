@@ -1,0 +1,60 @@
+TITLE: MLCUTS TIME18
+DATA: FILE = "long18_stable.csv";
+VARIABLE:
+    NAMES = Sub time anger Disgust fear Sad;
+    MISSING are all (999);
+    USEVAR = anger Disgust fear Sad ;
+    CLUSTER = sub;
+ANALYSIS:
+TYPE = TWOLEVEL;
+ESTIMATOR = BAYES;
+            proc=2;
+            BITERATIONS = (5000);
+            bseed=450; 
+            thin=10; 
+
+
+
+MODEL:
+
+%WITHIN%
+
+! common states
+CS BY 
+anger 
+disgust (lcs21)
+fear (lcs31)
+sad (lcs41) ;
+
+CS(cs_var);
+anger (err11) ;
+disgust (err21) ;
+fear(err31) ;
+sad(err41) ;
+
+
+
+%BETWEEN%
+
+! common trait
+CT BY 
+anger 
+disgust (lat21)
+fear (lat31)
+sad (lat41);
+
+
+CT (ct_var) ;
+anger (ut_var1) ;
+disgust (ut_var2) ;
+fear (ut_var3) ;
+sad (ut_var4) ;
+ 
+
+
+
+
+OUTPUT:
+TECH1 ;TECH8;
+
+PLOT: TYPE = PLOT2;
