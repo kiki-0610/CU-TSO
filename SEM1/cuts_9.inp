@@ -1,0 +1,390 @@
+TITLE: SL-CUTS TIME9
+DATA: FILE = "wide9.CSV";
+VARIABLE: 
+NAMES = 
+anger_1- anger_9
+disgust_1-disgust_9
+fear_1-fear_9
+sad_1-sad_9; 
+MISSING are all (999);
+ANALYSIS:
+ESTIMATOR = BAYES;
+          proc=2;
+          BITERATIONS = (5000);
+          bseed=450; 
+          thin=10; 
+MODEL:
+
+! common states
+CS1 BY anger_1@1
+disgust_1 (lcs21)
+fear_1 (lcs31)
+sad_1 (lcs41) ;
+
+CS2 BY anger_2@1
+disgust_2 (lcs21)
+fear_2 (lcs31)
+sad_2 (lcs41) ;
+
+CS3 BY anger_3@1
+disgust_3 (lcs21)
+fear_3 (lcs31)
+sad_3 (lcs41) ;
+
+CS4 BY anger_4@1
+disgust_4 (lcs21)
+fear_4 (lcs31)
+sad_4 (lcs41) ;
+
+CS5 BY anger_5@1
+disgust_5 (lcs21)
+fear_5 (lcs31)
+sad_5 (lcs41) ;
+
+CS6 BY anger_6@1
+disgust_6(lcs21)
+fear_6(lcs31)
+sad_6 (lcs41) ;
+
+CS7 BY anger_7@1
+disgust_7 (lcs21)
+fear_7 (lcs31)
+sad_7 (lcs41) ;
+
+CS8 BY anger_8@1
+disgust_8 (lcs21)
+fear_8 (lcs31)
+sad_8 (lcs41) ;
+
+CS9 BY anger_9@1
+disgust_9 (lcs21)
+fear_9 (lcs31)
+sad_9 (lcs41) ;
+
+! common trait
+CT BY anger_1@1
+disgust_1 (lat21)
+fear_1 (lat31)
+sad_1 (lat41)
+
+anger_2@1
+disgust_2 (lat21)
+fear_2 (lat31)
+sad_2 (lat41)
+
+anger_3@1
+disgust_3 (lat21)
+fear_3 (lat31)
+sad_3 (lat41)
+
+anger_4@1
+disgust_4 (lat21)
+fear_4 (lat31)
+sad_4 (lat41)
+
+anger_5@1
+disgust_5 (lat21)
+fear_5(lat31)
+sad_5 (lat41)
+
+anger_6@1
+disgust_6(lat21)
+fear_6(lat31)
+sad_6(lat41)
+
+anger_7@1
+disgust_7 (lat21)
+fear_7 (lat31)
+sad_7 (lat41)
+
+anger_8@1
+disgust_8 (lat21)
+fear_8 (lat31)
+sad_8 (lat41)
+
+anger_9@1
+disgust_9 (lat21)
+fear_9 (lat31)
+sad_9 (lat41) ;
+
+! unique trait
+UT1 BY anger_1@1
+anger_2@1
+anger_3@1
+anger_4@1
+anger_5@1
+anger_6@1
+anger_7@1
+anger_8@1
+anger_9@1;
+
+UT2 BY disgust_1@1
+disgust_2@1
+disgust_3@1
+disgust_4@1
+disgust_5@1
+disgust_6@1
+disgust_7@1
+disgust_8@1
+disgust_9@1;
+
+UT3 BY fear_1@1
+fear_2@1
+fear_3@1
+fear_4@1
+fear_5@1
+fear_6@1
+fear_7@1
+fear_8@1
+fear_9@1;
+
+UT4 BY sad_1@1
+sad_2@1
+sad_3@1
+sad_4@1
+sad_5@1
+sad_6@1
+sad_7@1
+sad_8@1
+sad_9@1;
+
+! Intercepts and means
+[anger_1*] (ins11) ;
+[disgust_1*] (ins21) ;
+[fear_1*] (ins31) ;
+[sad_1*] (ins41) ;
+
+[anger_2*] (ins11) ;
+[disgust_2*] (ins21) ;
+[fear_2*] (ins31) ;
+[sad_2*] (ins41) ;
+
+[anger_3*] (ins11) ;
+[disgust_3*] (ins21) ;
+[fear_3*] (ins31) ;
+[sad_3*] (ins41) ;
+
+[anger_4*] (ins11) ;
+[disgust_4*] (ins21) ;
+[fear_4*] (ins31) ;
+[sad_4*] (ins41) ;
+
+[anger_5*] (ins11) ;
+[disgust_5*] (ins21) ;
+[fear_5*] (ins31) ;
+[sad_5*] (ins41) ;
+
+[anger_6*] (ins11) ;
+[disgust_6*] (ins21) ;
+[fear_6*] (ins31) ;
+[sad_6*] (ins41) ;
+
+[anger_7*] (ins11) ;
+[disgust_7*] (ins21) ;
+[fear_7*] (ins31) ;
+[sad_7*] (ins41) ;
+
+[anger_8*] (ins11) ;
+[disgust_8*] (ins21) ;
+[fear_8*] (ins31) ;
+[sad_8*] (ins41) ;
+
+[anger_9*] (ins11) ;
+[disgust_9*] (ins21) ;
+[fear_9*] (ins31) ;
+[sad_9*] (ins41) ;
+
+
+! Set 0 covariances
+CS1 WITH CS2@0
+CS3@0
+CS4@0
+CS5@0
+CS6@0
+CS7@0
+CS8@0
+CS9@0
+UT1@0
+UT2@0
+UT3@0
+UT4@0
+CT@0 ;
+CS2 WITH CS3@0
+CS4@0
+CS5@0
+CS6@0
+CS7@0
+CS8@0
+CS9@0
+UT1@0
+UT2@0
+UT3@0
+UT4@0
+CT@0 ;
+CS3 WITH CS4@0
+CS5@0
+CS6@0
+CS7@0
+CS8@0
+CS9@0
+UT1@0
+UT2@0
+UT3@0
+UT4@0
+CT@0 ;
+CS4 WITH CS5@0
+CS6@0
+CS7@0
+CS8@0
+CS9@0
+UT1@0
+UT2@0
+UT3@0
+UT4@0
+CT@0 ;
+CS5 WITH CS6@0
+CS7@0
+CS8@0
+CS9@0
+UT1@0
+UT2@0
+UT3@0
+UT4@0
+CT@0 ;
+CS6 WITH CS7@0
+CS8@0
+CS9@0
+UT1@0
+UT2@0
+UT3@0
+UT4@0
+CT@0 ;
+CS7 WITH CS8@0
+CS9@0
+UT1@0
+UT2@0
+UT3@0
+UT4@0
+CT@0 ;
+CS8 WITH CS9@0
+UT1@0
+UT2@0
+UT3@0
+UT4@0
+CT@0 ;
+CS9 WITH UT1@0
+UT2@0
+UT3@0
+UT4@0
+CT@0 ;
+UT1 WITH UT2@0
+UT3@0
+UT4@0
+CT@0 ;
+UT2 WITH UT3@0
+UT4@0
+CT@0 ;
+UT3 WITH UT4@0
+CT@0 ;
+UT4 WITH CT@0 ;
+
+! Variance components
+anger_1 (err11) ;
+disgust_1 (err21) ;
+fear_1 (err31) ;
+sad_1 (err41) ;
+
+anger_2 (err11) ;
+disgust_2 (err21) ;
+fear_2 (err31) ;
+sad_2 (err41) ;
+
+anger_3 (err11) ;
+disgust_3 (err21) ;
+fear_3 (err31) ;
+sad_3 (err41) ;
+
+anger_4 (err11) ;
+disgust_4 (err21) ;
+fear_4 (err31) ;
+sad_4 (err41) ;
+
+anger_5 (err11) ;
+disgust_5 (err21) ;
+fear_5 (err31) ;
+sad_5 (err41) ;
+
+anger_6 (err11) ;
+disgust_6 (err21) ;
+fear_6 (err31) ;
+sad_6 (err41) ;
+
+anger_7 (err11) ;
+disgust_7 (err21) ;
+fear_7 (err31) ;
+sad_7 (err41) ;
+
+anger_8 (err11) ;
+disgust_8 (err21) ;
+fear_8 (err31) ;
+sad_8 (err41) ;
+
+anger_9 (err11) ;
+disgust_9 (err21) ;
+fear_9 (err31) ;
+sad_9 (err41) ;
+
+CS1 (cs_var) ;
+CS2 (cs_var) ;
+CS3 (cs_var) ;
+CS4 (cs_var) ;
+CS5 (cs_var) ;
+CS6 (cs_var) ;
+CS7 (cs_var) ;
+CS8 (cs_var) ;
+CS9 (cs_var) ;
+UT1 (ut_var1) ;
+UT2 (ut_var2) ;
+UT3 (ut_var3) ;
+UT4 (ut_var4) ;
+CT (ct_var) ;
+
+
+MODEL CONSTRAINT:
+    NEW(TOTAL1 REL1 TCON1 CCON1 UCON1 OCC1);
+    NEW(TOTAL2 REL2 TCON2 CCON2 UCON2 OCC2);
+    NEW(TOTAL3 REL3 TCON3 CCON3 UCON3 OCC3);
+    NEW(TOTAL4 REL4 TCON4 CCON4 UCON4 OCC4);
+! anger
+    TOTAL1  =    ct_var + ut_var1 + cs_var + err11;
+    REL1    =  ( ct_var + ut_var1 + cs_var ) / TOTAL1;
+    TCON1   =  ( ct_var + ut_var1 ) / TOTAL1;
+    CCON1   =    ct_var  / TOTAL1;
+    UCON1   =    ut_var1 / TOTAL1;
+    OCC1    =    cs_var / TOTAL1;  
+!disgust
+    TOTAL2  =     lat21 ^ 2 * ct_var + ut_var2 + lcs21 ^ 2 * cs_var + err21;
+    REL2    =    (lat21 ^ 2 * ct_var + ut_var2 + lcs21 ^ 2 * cs_var) / TOTAL2;
+    TCON2   =    (lat21 ^ 2 * ct_var + ut_var2 ) / TOTAL2;
+    CCON2   =    lat21 ^ 2 *ct_var  / TOTAL2;
+    UCON2   =    ut_var2 / TOTAL2;
+    OCC2    =    (lcs21 ^ 2 * cs_var) / TOTAL2;
+!fear
+    TOTAL3  =     lat31 ^ 2 * ct_var + ut_var3 + lcs31 ^ 2 * cs_var + err31;
+    REL3    =    (lat31 ^ 2 * ct_var + ut_var3 + lcs31 ^ 2 * cs_var) / TOTAL3;
+    TCON3   =    (lat31 ^ 2 * ct_var + ut_var3 ) / TOTAL3;
+    CCON3   =    lat31 ^ 2 *ct_var  / TOTAL3;
+    UCON3   =    ut_var3 / TOTAL3;
+    OCC3    =    (lcs31 ^ 2 * cs_var) / TOTAL3;
+!sad
+    TOTAL4  =     lat41 ^ 2 * ct_var + ut_var4 + lcs41 ^ 2 * cs_var + err41;
+    REL4    =    (lat41 ^ 2 * ct_var + ut_var4 + lcs41 ^ 2 * cs_var) / TOTAL4;
+    TCON4   =    (lat41 ^ 2 * ct_var + ut_var4 ) / TOTAL4;
+    CCON4   =    lat41 ^ 2 *ct_var  / TOTAL4;
+    UCON4   =    ut_var4 / TOTAL4;
+    OCC4    =    (lcs41 ^ 2 * cs_var) / TOTAL4;
+
+OUTPUT:
+      TECH1 ;TECH8;
+
+      PLOT: TYPE = PLOT2;

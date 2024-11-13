@@ -1,0 +1,292 @@
+TITLE: SL-MSST TIME9
+DATA: FILE = "wide9.CSV";
+VARIABLE: 
+NAMES =  
+anger_1- anger_9
+disgust_1-disgust_9
+fear_1-fear_9
+sad_1-sad_9; 
+MISSING are all (999);
+ANALYSIS:
+ESTIMATOR = BAYES;
+            proc=2;
+            BITERATIONS = (5000);
+            bseed=450; 
+            thin=10; 
+MODEL:
+
+! Latent state variables
+eta1 BY anger_1@1
+disgust_1 (las21)
+fear_1 (las31)
+sad_1 (las41) ;
+
+eta2 BY anger_2@1
+disgust_2(las21)
+fear_2(las31)
+sad_2(las41) ;
+
+eta3 BY anger_3@1
+disgust_3(las21)
+fear_3(las31)
+sad_3(las41) ;
+
+eta4 BY anger_4@1
+disgust_4 (las21)
+fear_4 (las31)
+sad_4 (las41) ;
+
+eta5 BY anger_5@1
+disgust_5 (las21)
+fear_5 (las31)
+sad_5 (las41) ;
+
+eta6 BY anger_6@1
+disgust_6(las21)
+fear_6(las31)
+sad_6(las41) ;
+
+eta7 BY anger_7@1
+disgust_7(las21)
+fear_7(las31)
+sad_7(las41) ;
+
+eta8 BY anger_8@1
+disgust_8 (las21)
+fear_8 (las31)
+sad_8 (las41) ;
+
+eta9 BY anger_9@1
+disgust_9 (las21)
+fear_9 (las31)
+sad_9 (las41) ;
+
+! Latent trait variables
+theta1 BY  anger_1@1
+disgust_1 (lat21)
+fear_1 (lat31)
+sad_1 (lat41)
+
+anger_2@1
+disgust_2 (lat21)
+fear_2 (lat31)
+sad_2 (lat41)
+
+anger_3@1
+disgust_3 (lat21)
+fear_3 (lat31)
+sad_3 (lat41)
+
+anger_4@1
+disgust_4 (lat21)
+fear_4 (lat31)
+sad_4 (lat41)
+
+anger_5@1
+disgust_5 (lat21)
+fear_5(lat31)
+sad_5 (lat41)
+
+anger_6@1
+disgust_6(lat21)
+fear_6(lat31)
+sad_6(lat41)
+
+anger_7@1
+disgust_7 (lat21)
+fear_7 (lat31)
+sad_7 (lat41)
+
+anger_8@1
+disgust_8 (lat21)
+fear_8 (lat31)
+sad_8 (lat41)
+
+anger_9@1
+disgust_9 (lat21)
+fear_9 (lat31)
+sad_9 (lat41) ;
+
+! Intercepts and means
+[anger_1@0] (int11) ;
+[disgust_1*] (int21) ;
+[fear_1*] (int31) ;
+[sad_1*] (int41) ;
+
+[anger_2@0] (int11) ;
+[disgust_2*] (int21) ;
+[fear_2*] (int31) ;
+[sad_2*] (int41) ;
+
+[anger_3@0] (int11) ;
+[disgust_3*] (int21) ;
+[fear_3*] (int31) ;
+[sad_3*] (int41) ;
+
+[anger_4@0] (int11) ;
+[disgust_4*] (int21) ;
+[fear_4*] (int31) ;
+[sad_4*] (int41) ;
+
+[anger_5@0] (int11) ;
+[disgust_5*] (int21) ;
+[fear_5*] (int31) ;
+[sad_5*] (int41) ;
+
+[anger_6@0] (int11) ;
+[disgust_6*] (int21) ;
+[fear_6*] (int31) ;
+[sad_6*] (int41) ;
+
+[anger_7@0] (int11) ;
+[disgust_7*] (int21) ;
+[fear_7*] (int31) ;
+[sad_7*] (int41) ;
+
+[anger_8@0] (int11) ;
+[disgust_8*] (int21) ;
+[fear_8*] (int31) ;
+[sad_8*] (int41) ;
+
+[anger_9@0] (int11) ;
+[disgust_9*] (int21) ;
+[fear_9*] (int31) ;
+[sad_9*] (int41) ;
+
+[theta1*] ;
+
+! Variance components
+anger_1 (err11) ;
+disgust_1 (err21) ;
+fear_1 (err31) ;
+sad_1 (err41) ;
+
+anger_2 (err11) ;
+disgust_2 (err21) ;
+fear_2 (err31) ;
+sad_2 (err41) ;
+
+anger_3 (err11) ;
+disgust_3 (err21) ;
+fear_3 (err31) ;
+sad_3 (err41) ;
+
+anger_4 (err11) ;
+disgust_4 (err21) ;
+fear_4 (err31) ;
+sad_4 (err41) ;
+
+anger_5 (err11) ;
+disgust_5 (err21) ;
+fear_5 (err31) ;
+sad_5 (err41) ;
+
+anger_6 (err11) ;
+disgust_6 (err21) ;
+fear_6 (err31) ;
+sad_6 (err41) ;
+
+anger_7 (err11) ;
+disgust_7 (err21) ;
+fear_7 (err31) ;
+sad_7 (err41) ;
+
+anger_8 (err11) ;
+disgust_8 (err21) ;
+fear_8 (err31) ;
+sad_8 (err41) ;
+
+anger_9 (err11) ;
+disgust_9 (err21) ;
+fear_9 (err31) ;
+sad_9 (err41) ;
+
+eta1(s_var) ;
+eta2(s_var) ;
+eta3(s_var) ;
+eta4(s_var) ;
+eta5(s_var) ;
+eta6(s_var) ;
+eta7(s_var) ;
+eta8(s_var) ;
+eta9(s_var) ;
+theta1(t_var) ;
+
+! Set zero covariances
+eta1 WITH eta2@0
+eta3@0
+eta4@0
+eta5@0
+eta6@0
+eta7@0
+eta8@0
+eta9@0
+theta1@0 ;
+eta2 WITH eta3@0
+eta4@0
+eta5@0
+eta6@0
+eta7@0
+eta8@0
+eta9@0
+theta1@0 ;
+eta3 WITH eta4@0
+eta5@0
+eta6@0
+eta7@0
+eta8@0
+eta9@0
+theta1@0 ;
+eta4 WITH eta5@0
+eta6@0
+eta7@0
+eta8@0
+eta9@0
+theta1@0 ;
+eta5 WITH eta6@0
+eta7@0
+eta8@0
+eta9@0
+theta1@0 ;
+eta6 WITH eta7@0
+eta8@0
+eta9@0
+theta1@0 ;
+eta7 WITH eta8@0
+eta9@0
+theta1@0 ;
+eta8 WITH eta9@0
+theta1@0 ;
+eta9 WITH theta1@0 ;
+
+
+ MODEL CONSTRAINT:
+  NEW(TOTAL1 REL1 CON1 OCC1);
+  NEW(TOTAL2 REL2 CON2 OCC2);
+  NEW(TOTAL3 REL3 CON3 OCC3);
+  NEW(TOTAL4 REL4 CON4 OCC4);
+!anger
+  TOTAL1 =  t_var + s_var + err11;
+  REL1   = (t_var + s_var ) / TOTAL1;
+  CON1   =  t_var / TOTAL1;
+  OCC1   =  s_var / TOTAL1;
+!disgust
+  TOTAL2 =  lat21 ^ 2 * t_var + las21 ^ 2 * s_var + err21;
+  REL2   = (lat21 ^ 2 * t_var + las21 ^ 2 * s_var) / TOTAL2;
+  CON2   = (lat21 ^ 2 * t_var) / TOTAL2;
+  OCC2   = (las21 ^ 2 * s_var) / TOTAL2;
+!fear
+  TOTAL3 =  lat31 ^ 2 * t_var + las31 ^ 2 * s_var + err31;
+  REL3   = (lat31 ^ 2 * t_var + las31 ^ 2 * s_var) / TOTAL3;
+  CON3   = (lat31 ^ 2 * t_var) / TOTAL3;
+  OCC3   = (las31 ^ 2 * s_var) / TOTAL3;
+!sad
+  TOTAL4 =  lat41 ^ 2 * t_var + las41 ^ 2 * s_var + err41;
+  REL4   = (lat41 ^ 2 * t_var + las41 ^ 2 * s_var) / TOTAL4;
+  CON4   = (lat41 ^ 2 * t_var) / TOTAL4;
+  OCC4   = (las41 ^ 2 * s_var)  / TOTAL4;
+
+OUTPUT:
+        TECH1 ;TECH8;
+
+        PLOT: TYPE = PLOT2;
